@@ -22,38 +22,12 @@ public class Autos {
   /**
    * Waits for 10 seconds, then drives
    *  fowards for three seconds to cross 
-   *  the starting line. (13s Auto)
+   *  the starting line. (3s Auto)
    */
   public static final Command DefaultAuto() {
     return
       new SequentialCommandGroup(
         // new WaitCommand(10.0),
-        new ParallelRaceGroup(
-          new WaitCommand(3.0),
-          new DriveCommand(0.5, 0.0)
-        )
-      );
-  }
-
-  /**
-   * Drives along the wall to cross the
-   *  starting line. (5s Auto)
-   */
-  public static final Command WallHuggerAuto() {
-    return 
-      new SequentialCommandGroup(
-        new ParallelRaceGroup(
-          new WaitCommand(0.5),
-          new DriveCommand(0.0, 0.5)
-        ),
-        new ParallelRaceGroup(
-          new WaitCommand(1.0),
-          new DriveCommand(0.5, 0.0)
-        ),
-        new ParallelRaceGroup(
-          new WaitCommand(0.5),
-          new DriveCommand(0.0, -0.5)
-        ),
         new ParallelRaceGroup(
           new WaitCommand(3.0),
           new DriveCommand(0.5, 0.0)

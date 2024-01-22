@@ -5,12 +5,15 @@
 package frc.robot;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autos;
+import frc.robot.commands.DanceCommand;
 import frc.robot.commands.DriveCommand;
 
 /**
@@ -21,7 +24,7 @@ import frc.robot.commands.DriveCommand;
  */
 public class RobotContainer {
   /* RobotContainer Variables */
-  private static final CommandXboxController driverController = new CommandXboxController(Constants.joystick);
+  private static final XboxController driverController = new XboxController(Constants.driverID);
   private static SendableChooser<Command> autonomous = new SendableChooser<>();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -33,7 +36,7 @@ public class RobotContainer {
 
     /* Autonomous Selection */
     autonomous.setDefaultOption("Default Auto", Autos.DefaultAuto());
-    autonomous.addOption("Wall Hugger", Autos.WallHuggerAuto());
+    autonomous.addOption("Empty Auto", null);
     SmartDashboard.putData("Autonomous", autonomous);
   }
 
@@ -46,7 +49,11 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureBindings() {}
+  private void configureBindings() {
+    final JoystickButton dance = new JoystickButton(driverController, Constants.danceButton);
+
+    dance.whileTrue(new DanceCommand());
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

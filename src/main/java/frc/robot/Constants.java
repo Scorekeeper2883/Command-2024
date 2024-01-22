@@ -22,7 +22,8 @@ public final class Constants {
   public static final boolean isArcade = true; // true for Arcade, false for Tank
 
   /* IO IDs */
-  public static final int joystick = 0;
+  public static final int driverID = 0;
+  public static final int danceButton = 1;
 
   /* Motor IDs */
   public static final int leftFront = 3;
