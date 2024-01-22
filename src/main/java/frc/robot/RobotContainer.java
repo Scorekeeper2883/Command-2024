@@ -33,6 +33,7 @@ public class RobotContainer {
 
     /* Autonomous Selection */
     autonomous.setDefaultOption("Default Auto", Autos.DefaultAuto());
+    autonomous.addOption("Wall Hugger", Autos.WallHuggerAuto());
     SmartDashboard.putData("Autonomous", autonomous);
   }
 
