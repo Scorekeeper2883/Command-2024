@@ -47,12 +47,15 @@ public class DriveTrain extends SubsystemBase {
   public void Drive(double pSpeed, double pRotation) {
     pSpeed = -pSpeed;
 
+    double speedIsSquared = pSpeed > 0 ? pSpeed * pSpeed : pSpeed * pSpeed * -1;
+    double rotationIsSquared = pRotation > 0? pRotation * pRotation : pRotation * pRotation * -1;
+
     if(Constants.isArcade) {
-      leftFrontMotor.set(pSpeed+pRotation);
-      rightFrontMotor.set(pSpeed-pRotation);
+      leftFrontMotor.set(speedIsSquared+rotationIsSquared);
+      rightFrontMotor.set(speedIsSquared-rotationIsSquared);
     } else {
-      leftFrontMotor.set(pSpeed);
-      rightFrontMotor.set(pRotation);
+      leftFrontMotor.set(speedIsSquared);
+      rightFrontMotor.set(rotationIsSquared);
     }
   }
 }
