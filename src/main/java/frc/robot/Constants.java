@@ -21,8 +21,12 @@ public final class Constants {
   /* Driver Preferences */
   public static final boolean isArcade = true; // true for Arcade, false for Tank
 
-  /* IO IDs */
+  /* Controller and Axis IDs */
   public static final int driverID = 0;
+  public static final int speedInput = 1;
+  public static final int rotationInput = 2;
+  
+  /* Button IDs */
   public static final int danceButton = 1;
 
   /* Motor IDs */

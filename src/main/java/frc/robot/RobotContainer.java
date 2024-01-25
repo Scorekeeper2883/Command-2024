@@ -5,7 +5,8 @@
 package frc.robot;
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PS4Controller;
+// import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -24,7 +25,7 @@ import frc.robot.commands.DriveCommand;
  */
 public class RobotContainer {
   /* RobotContainer Variables */
-  private static final XboxController driverController = new XboxController(Constants.driverID);
+  private static final PS4Controller driverController = new PS4Controller(Constants.driverID);
   private static SendableChooser<Command> autonomous = new SendableChooser<>();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -32,7 +33,7 @@ public class RobotContainer {
     configureBindings();
 
     /* Subsystem Default Command */
-    Constants.driveTrain.setDefaultCommand(new DriveCommand(MathUtil.applyDeadband(-driverController.getRawAxis(1), 0.2), MathUtil.applyDeadband(driverController.getRawAxis(4), 0.2)));
+    Constants.driveTrain.setDefaultCommand(new DriveCommand(MathUtil.applyDeadband(-driverController.getRawAxis(Constants.speedInput), 0.2), MathUtil.applyDeadband(driverController.getRawAxis(Constants.rotationInput), 0.2)));
 
     /* Autonomous Selection */
     autonomous.setDefaultOption("Default Auto", Autos.DefaultAuto());

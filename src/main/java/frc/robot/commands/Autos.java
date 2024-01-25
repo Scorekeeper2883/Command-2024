@@ -30,7 +30,7 @@ public class Autos {
         // new WaitCommand(10.0),
         new ParallelRaceGroup(
           new WaitCommand(3.0),
-          new DriveCommand(0.5, 0.0)
+          new DriveCommand(0.25, 0.0)
         )
       );
   }
