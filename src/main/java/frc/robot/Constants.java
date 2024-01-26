@@ -23,8 +23,8 @@ public final class Constants {
 
   /* Controller and Axis IDs */
   public static final int driverID = 0;
-  public static final int speedInput = 1;
-  public static final int rotationInput = 2;
+  public static final int speedInput = 2;
+  public static final int rotationInput = 3;
   
   /* Button IDs */
   public static final int danceButton = 1;
