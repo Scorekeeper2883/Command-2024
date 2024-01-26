@@ -19,9 +19,9 @@ public class DanceCommand extends Command {
   private static int cupidReverse = 1;
 
   public DanceCommand() {
-    addRequirements(Constants.driveTrain);
-
     danceStart = Timer.getFPGATimestamp();
+    
+    addRequirements(Constants.driveTrain);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -21,10 +21,10 @@ public class DriveCommand extends Command {
    * @param pRotation - See DriveTrain.Drive() pRotation.
    */
   public DriveCommand(double pSpeed, double pRotation) {
-    addRequirements(Constants.driveTrain);
-
     speed = pSpeed;
     rotation = pRotation;
+
+    addRequirements(Constants.driveTrain);    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
