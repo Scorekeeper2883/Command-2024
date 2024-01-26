@@ -16,10 +16,10 @@ import frc.robot.Constants;
  */
 public class DriveTrain extends SubsystemBase {
   /* DriveTrain Variables */
-  private static final CANSparkMax leftFrontMotor   = new CANSparkMax(Constants.leftFront, MotorType.kBrushed);
-  private static final CANSparkMax leftBackMotor    = new CANSparkMax(Constants.leftBack, MotorType.kBrushed);
-  private static final CANSparkMax rightFrontMotor  = new CANSparkMax(Constants.rightFront, MotorType.kBrushed);
-  private static final CANSparkMax rightBackMotor   = new CANSparkMax(Constants.rightBack, MotorType.kBrushed);
+  private static final CANSparkMax leftFrontMotor   = new CANSparkMax(Constants.leftFront, MotorType.kBrushless);
+  private static final CANSparkMax leftBackMotor    = new CANSparkMax(Constants.leftBack, MotorType.kBrushless);
+  private static final CANSparkMax rightFrontMotor  = new CANSparkMax(Constants.rightFront, MotorType.kBrushless);
+  private static final CANSparkMax rightBackMotor   = new CANSparkMax(Constants.rightBack, MotorType.kBrushless);
 
   public DriveTrain() {
     /* Motor Invert Settings*/
@@ -41,14 +41,14 @@ public class DriveTrain extends SubsystemBase {
 
   /**
    * Drive method for chassis control.
-   * @param pSpeed    - foward/backwards for Arcade, leftside for Tank
-   * @param pRotation - left/right steering for Arcade, rightside for Tank
+   * @param pSpeed    - foward/backwards for Arcade, leftside motors for Tank
+   * @param pRotation - left/right steering for Arcade, rightside motors for Tank
    */
   public void Drive(double pSpeed, double pRotation) {
     pSpeed = -pSpeed;
 
     double speedIsSquared = pSpeed > 0 ? pSpeed * pSpeed : pSpeed * pSpeed * -1;
-    double rotationIsSquared = pRotation > 0? pRotation * pRotation : pRotation * pRotation * -1;
+    double rotationIsSquared = pRotation > 0 ? pRotation * pRotation : pRotation * pRotation * -1;
 
     if(Constants.isArcade) {
       leftFrontMotor.set(speedIsSquared+rotationIsSquared);
