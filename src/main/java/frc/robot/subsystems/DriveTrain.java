@@ -45,14 +45,12 @@ public class DriveTrain extends SubsystemBase {
    * @param pRotation - left/right steering for Arcade, rightside motors for Tank
    */
   public void Drive(double pSpeed, double pRotation) {
-    pRotation = -pRotation;
-
     double speedIsSquared = pSpeed > 0 ? pSpeed * pSpeed : pSpeed * pSpeed * -1;
     double rotationIsSquared = pRotation > 0 ? pRotation * pRotation : pRotation * pRotation * -1;
 
     if(Constants.isArcade) {
-      leftFrontMotor.set(speedIsSquared-rotationIsSquared);
-      rightFrontMotor.set(speedIsSquared+rotationIsSquared);
+      leftFrontMotor.set(speedIsSquared+rotationIsSquared);
+      rightFrontMotor.set(speedIsSquared-rotationIsSquared);
     } else {
       leftFrontMotor.set(speedIsSquared);
       rightFrontMotor.set(rotationIsSquared);
