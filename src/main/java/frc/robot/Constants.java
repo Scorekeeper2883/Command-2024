@@ -23,15 +23,15 @@ public final class Constants {
 
   /* Controller and Axis IDs */
   public static final int driverID = 0;
-  public static final int speedInput = 2;
-  public static final int rotationInput = 3;
-  
+  public static final int speedInput = 1;
+  public static final int rotationInput = 4;
+
   /* Button IDs */
   public static final int danceButton = 1;
 
   /* Motor IDs */
-  public static final int leftFront = 3;
-  public static final int leftBack = 4;
-  public static final int rightFront = 1;
-  public static final int rightBack = 2;
+  public static final int leftFront = 1;
+  public static final int leftBack = 2;
+  public static final int rightFront = 3;
+  public static final int rightBack = 4;
 }

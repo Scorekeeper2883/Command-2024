@@ -5,16 +5,15 @@
 package frc.robot;
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.wpilibj.PS4Controller;
-// import edu.wpi.first.wpilibj.XboxController;
+// import edu.wpi.first.wpilibj.PS4Controller;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autos;
-import frc.robot.commands.DanceCommand;
-import frc.robot.commands.DriveCommand;
+import frc.robot.commands.drives.StickDrive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -24,7 +23,7 @@ import frc.robot.commands.DriveCommand;
  */
 public class RobotContainer {
   /* RobotContainer Variables */
-  private static final PS4Controller driverController = new PS4Controller(Constants.driverID);
+  private static final XboxController driverController = new XboxController(Constants.driverID);
   private static SendableChooser<Command> autonomous = new SendableChooser<>();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -32,11 +31,11 @@ public class RobotContainer {
     configureBindings();
 
     /* Subsystem Default Command */
-    Constants.driveTrain.setDefaultCommand(new DriveCommand(MathUtil.applyDeadband(-driverController.getRawAxis(Constants.speedInput), 0.2), MathUtil.applyDeadband(driverController.getRawAxis(Constants.rotationInput), 0.2)));
+    Constants.driveTrain.setDefaultCommand(new StickDrive(()->MathUtil.applyDeadband(-driverController.getRawAxis(Constants.speedInput), 0.2), ()->MathUtil.applyDeadband(driverController.getRawAxis(Constants.rotationInput), 0.2)));
 
     /* Autonomous Selection */
     autonomous.setDefaultOption("Default Auto", Autos.DefaultAuto());
-    autonomous.addOption("Empty Auto", null);
+    autonomous.addOption("Empty Auto", Commands.none());
     SmartDashboard.putData("Autonomous", autonomous);
   }
 
@@ -49,11 +48,7 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureBindings() {
-    final JoystickButton dance = new JoystickButton(driverController, Constants.danceButton);
-
-    dance.whileTrue(new DanceCommand());
-  }
+  private void configureBindings() {}
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

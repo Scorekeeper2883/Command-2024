@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.drives.AutoDrive;
 
 /**
  * Autos holds the method
@@ -24,13 +25,13 @@ public class Autos {
    *  fowards for three seconds to cross 
    *  the starting line. (3s Auto)
    */
-  public static final Command DefaultAuto() {
+  public static Command DefaultAuto() {
     return
       new SequentialCommandGroup(
-        // new WaitCommand(10.0),
+        new WaitCommand(2.0),
         new ParallelRaceGroup(
           new WaitCommand(3.0),
-          new DriveCommand(0.5, 0.0)
+          new AutoDrive(0.25, 0.0)
         )
       );
   }
