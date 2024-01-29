@@ -30,8 +30,8 @@ public final class Constants {
   public static final int danceButton = 1;
 
   /* Motor IDs */
-  public static final int leftFront = 1;
-  public static final int leftBack = 2;
-  public static final int rightFront = 3;
-  public static final int rightBack = 4;
+  public static final int leftFront = 3;
+  public static final int leftBack = 4;
+  public static final int rightFront = 1;
+  public static final int rightBack = 2;
 }

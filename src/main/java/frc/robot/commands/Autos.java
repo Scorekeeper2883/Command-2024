@@ -25,7 +25,7 @@ public class Autos {
    *  fowards for three seconds to cross 
    *  the starting line. (3s Auto)
    */
-  public static Command DefaultAuto() {
+  public static Command SimpleAuto() {
     return
       new SequentialCommandGroup(
         new WaitCommand(2.0),

@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.math.MathUtil;
-// import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,8 +33,8 @@ public class RobotContainer {
     Constants.driveTrain.setDefaultCommand(new StickDrive(()->MathUtil.applyDeadband(-driverController.getRawAxis(Constants.speedInput), 0.2), ()->MathUtil.applyDeadband(driverController.getRawAxis(Constants.rotationInput), 0.2)));
 
     /* Autonomous Selection */
-    autonomous.setDefaultOption("Default Auto", Autos.DefaultAuto());
-    autonomous.addOption("Empty Auto", Commands.none());
+    autonomous.setDefaultOption("Default Auto", Commands.none());
+    autonomous.addOption("Simple Auto", Autos.SimpleAuto());
     SmartDashboard.putData("Autonomous", autonomous);
   }
 
