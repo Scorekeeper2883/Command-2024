@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 
 /**
- * DriveCommand runs the chassis through
- *  the DriveTrain subsystem.
+ * StickDrive runs the chassis through
+ *  the DriveTrain subsystem (with controller).
  */
 public class StickDrive extends Command {
   private DoubleSupplier speed, rotation;
 
   /**
-   * Creates a new DriveCommand. 
+   * Creates a new StickDrive. 
    * @param pSpeed    - See DriveTrain.Drive() pSpeed.
    * @param pRotation - See DriveTrain.Drive() pRotation.
    */

@@ -9,7 +9,7 @@ import frc.robot.Constants;
 
 /**
  * AutoDrive runs the chassis through
- *  the DriveTrain subsystem.
+ *  the DriveTrain subsystem (automonously).
  */
 public class AutoDrive extends Command {
   private double speed, rotation;
