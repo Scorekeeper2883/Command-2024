@@ -26,9 +26,6 @@ public final class Constants {
   public static final int speedInput = 1;
   public static final int rotationInput = 4;
 
-  /* Button IDs */
-  public static final int danceButton = 1;
-
   /* Motor IDs */
   public static final int leftFront = 3;
   public static final int leftBack = 4;
