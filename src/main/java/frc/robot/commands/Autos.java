@@ -12,24 +12,27 @@ import frc.robot.commands.drives.AutoDrive;
 
 /**
  * Autos holds the method
- * of each Autonomous our
- * robot uses.
+ *  of each Autonomous our
+ *  robot uses.
  */
 public class Autos {
-	public Autos() {
-		throw new UnsupportedOperationException("This is a Utility Class!");
-	}
+  public Autos() {
+    throw new UnsupportedOperationException("This is a Utility Class!");
+  }
 
-	/**
-	 * Waits for 10 seconds, then drives
-	 * fowards for three seconds to cross
-	 * the starting line. (3s Auto)
-	 */
-	public static Command SimpleAuto() {
-		return new SequentialCommandGroup(
-				new WaitCommand(2.0),
-				new ParallelRaceGroup(
-						new WaitCommand(3.0),
-						new AutoDrive(0.25, 0.0)));
-	}
+  /**
+   * Waits for 10 seconds, then drives
+   *  fowards for three seconds to cross 
+   *  the starting line. (3s Auto)
+   */
+  public static Command SimpleAuto() {
+    return
+      new SequentialCommandGroup(
+        new WaitCommand(2.0),
+        new ParallelRaceGroup(
+          new WaitCommand(3.0),
+          new AutoDrive(0.25, 0.0)
+        )
+      );
+  }
 }
