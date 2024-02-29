@@ -10,32 +10,33 @@ import frc.robot.Constants;
 
 /**
  * StickDrive runs the chassis through
- *  the DriveTrain subsystem (with controller).
+ * the DriveTrain subsystem (with controller).
  */
 public class StickDrive extends Command {
-  private DoubleSupplier speed, rotation;
+	private DoubleSupplier speed, rotation;
 
-  /**
-   * Creates a new StickDrive. 
-   * @param pSpeed    - See DriveTrain.Drive() pSpeed.
-   * @param pRotation - See DriveTrain.Drive() pRotation.
-   */
-  public StickDrive(DoubleSupplier pSpeed, DoubleSupplier pRotation) {
-    speed = pSpeed;
-    rotation = pRotation;
+	/**
+	 * Creates a new StickDrive.
+	 * 
+	 * @param pSpeed    - See DriveTrain.Drive() pSpeed.
+	 * @param pRotation - See DriveTrain.Drive() pRotation.
+	 */
+	public StickDrive(DoubleSupplier pSpeed, DoubleSupplier pRotation) {
+		speed = pSpeed;
+		rotation = pRotation;
 
-    addRequirements(Constants.driveTrain);    
-  }
+		addRequirements(Constants.driveTrain);
+	}
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    Constants.driveTrain.Drive(speed.getAsDouble(), rotation.getAsDouble());
-  }
+	// Called every time the scheduler runs while the command is scheduled.
+	@Override
+	public void execute() {
+		Constants.driveTrain.Drive(speed.getAsDouble(), rotation.getAsDouble());
+	}
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    Constants.driveTrain.Drive(0.0, 0.0);
-  }
+	// Called once the command ends or is interrupted.
+	@Override
+	public void end(boolean interrupted) {
+		Constants.driveTrain.Drive(0.0, 0.0);
+	}
 }

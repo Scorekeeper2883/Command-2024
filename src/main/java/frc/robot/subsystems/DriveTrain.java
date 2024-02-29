@@ -4,54 +4,49 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 /**
  * DriveTrain declares and controls all running
- *  parts of the chassis.
+ * parts of the chassis.
  */
 public class DriveTrain extends SubsystemBase {
-  /* DriveTrain Variables */
-  private static final CANSparkMax leftFrontMotor   = new CANSparkMax(Constants.leftFront, MotorType.kBrushed);
-  private static final CANSparkMax leftBackMotor    = new CANSparkMax(Constants.leftBack, MotorType.kBrushed);
-  private static final CANSparkMax rightFrontMotor  = new CANSparkMax(Constants.rightFront, MotorType.kBrushed);
-  private static final CANSparkMax rightBackMotor   = new CANSparkMax(Constants.rightBack, MotorType.kBrushed);
+	/* DriveTrain Variables */
+	private static final VictorSPX leftFrontMotor = new VictorSPX(Constants.leftFront);
+	private static final VictorSPX leftBackMotor = new VictorSPX(Constants.leftBack);
+	private static final VictorSPX rightFrontMotor = new VictorSPX(Constants.rightFront);
+	private static final VictorSPX rightBackMotor = new VictorSPX(Constants.rightBack);
 
-  public DriveTrain() {
-    /* Motor Invert Settings*/
-    leftFrontMotor.setInverted(true);
-    leftBackMotor.setInverted(true);
-    rightFrontMotor.setInverted(false);
-    rightBackMotor.setInverted(false);
+	public DriveTrain() {
+		/* Motor Invert Settings */
+		leftFrontMotor.setInverted(true);
+		leftBackMotor.setInverted(true);
+		rightFrontMotor.setInverted(false);
+		rightBackMotor.setInverted(false);
 
-    /* Motor Idle Settings */
-    leftFrontMotor.setIdleMode(IdleMode.kBrake);
-    leftBackMotor.setIdleMode(IdleMode.kBrake);
-    rightFrontMotor.setIdleMode(IdleMode.kBrake);
+		/* Motor Neutral Settings */
+		leftFrontMotor.setNeutralMode(NeutralMode.Brake);
+		leftBackMotor.setNeutralMode(NeutralMode.Brake);
+		rightFrontMotor.setNeutralMode(NeutralMode.Brake);
+		rightBackMotor.setNeutralMode(NeutralMode.Brake);
 
-    rightBackMotor.setIdleMode(IdleMode.kBrake);
+		/* Declares Motor's Leader (Who It Follows) */
+		leftBackMotor.follow(leftBackMotor);
+		rightBackMotor.follow(rightFrontMotor);
+	}
 
-    /* Declares Motor's Leader (Who It Follows) */
-    leftBackMotor.follow(leftFrontMotor);
-    rightBackMotor.follow(rightFrontMotor);
-  }
-
-  /**
-   * Drive method for chassis control.
-   * @param pSpeed    - foward/backwards for Arcade, leftside motors for Tank
-   * @param pRotation - left/right steering for Arcade, rightside motors for Tank
-   */
-  public void Drive(double pSpeed, double pRotation) {
-    if(Constants.isArcade) {
-      leftFrontMotor.set(pSpeed+pRotation);
-      rightFrontMotor.set(pSpeed-pRotation);
-    } else {
-      leftFrontMotor.set(pSpeed);
-      rightFrontMotor.set(pRotation);
-    }
-  }
+	/**
+	 * Drive method for chassis control.
+	 * 
+	 * @param pSpeed    - foward/backwards
+	 * @param pRotation - left/right steering
+	 */
+	public void Drive(double pSpeed, double pRotation) {
+		leftFrontMotor.set(VictorSPXControlMode.Velocity, pSpeed);
+		rightFrontMotor.set(VictorSPXControlMode.Velocity, pRotation);
+	}
 }
