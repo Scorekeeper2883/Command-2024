@@ -12,46 +12,36 @@ import frc.robot.Constants;
 
 /**
  * DriveTrain declares and controls all running
- *  parts of the chassis.
+ * parts of the chassis.
  */
 public class DriveTrain extends SubsystemBase {
-  /* DriveTrain Variables */
-  private static final CANSparkMax leftFrontMotor   = new CANSparkMax(Constants.leftFront, MotorType.kBrushed);
   private static final CANSparkMax leftBackMotor    = new CANSparkMax(Constants.leftBack, MotorType.kBrushed);
-  private static final CANSparkMax rightFrontMotor  = new CANSparkMax(Constants.rightFront, MotorType.kBrushed);
+  private static final CANSparkMax leftFrontMotor   = new CANSparkMax(Constants.leftFront, MotorType.kBrushed);
   private static final CANSparkMax rightBackMotor   = new CANSparkMax(Constants.rightBack, MotorType.kBrushed);
+  private static final CANSparkMax rightFrontMotor  = new CANSparkMax(Constants.rightFront, MotorType.kBrushed);
 
   public DriveTrain() {
-    /* Motor Invert Settings*/
-    leftFrontMotor.setInverted(true);
     leftBackMotor.setInverted(true);
-    rightFrontMotor.setInverted(false);
+    leftFrontMotor.setInverted(true);
     rightBackMotor.setInverted(false);
+    rightFrontMotor.setInverted(false);
 
-    /* Motor Idle Settings */
-    leftFrontMotor.setIdleMode(IdleMode.kBrake);
     leftBackMotor.setIdleMode(IdleMode.kBrake);
+    leftFrontMotor.setIdleMode(IdleMode.kBrake);
+    rightBackMotor.setIdleMode(IdleMode.kBrake);
     rightFrontMotor.setIdleMode(IdleMode.kBrake);
 
-    rightBackMotor.setIdleMode(IdleMode.kBrake);
-
-    /* Declares Motor's Leader (Who It Follows) */
     leftBackMotor.follow(leftFrontMotor);
     rightBackMotor.follow(rightFrontMotor);
   }
 
   /**
    * Drive method for chassis control.
-   * @param pSpeed    - foward/backwards for Arcade, leftside motors for Tank
-   * @param pRotation - left/right steering for Arcade, rightside motors for Tank
+   * @param pSpeed    - foward/backwards
+   * @param pRotation - left/right (steering)
    */
   public void Drive(double pSpeed, double pRotation) {
-    if(Constants.isArcade) {
-      leftFrontMotor.set(pSpeed+pRotation);
-      rightFrontMotor.set(pSpeed-pRotation);
-    } else {
-      leftFrontMotor.set(pSpeed);
-      rightFrontMotor.set(pRotation);
-    }
+    leftFrontMotor.set(pSpeed+pRotation);
+    rightFrontMotor.set(pSpeed-pRotation);
   }
 }

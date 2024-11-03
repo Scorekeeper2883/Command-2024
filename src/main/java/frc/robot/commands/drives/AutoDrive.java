@@ -15,7 +15,7 @@ public class AutoDrive extends Command {
   private double speed, rotation;
 
   /**
-   * Creates a new AutoDrive. 
+   * Creates a new AutoDrive.
    * @param pSpeed    - See DriveTrain.Drive() pSpeed.
    * @param pRotation - See DriveTrain.Drive() pRotation.
    */
@@ -23,7 +23,7 @@ public class AutoDrive extends Command {
     speed = pSpeed;
     rotation = pRotation;
 
-    addRequirements(Constants.driveTrain);    
+    addRequirements(Constants.driveTrain);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

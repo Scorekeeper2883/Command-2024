@@ -18,17 +18,17 @@ public final class Constants {
   /* Subsystem Objects */
   public static DriveTrain driveTrain = new DriveTrain();
 
-  /* Driver Preferences */
-  public static final boolean isArcade = true; // true for Arcade, false for Tank
-
   /* Controller and Axis IDs */
   public static final int driverID = 0;
-  public static final int speedInput = 1;
   public static final int rotationInput = 4;
+  public static final int speedInput = 1;
+
+  /* Button IDs */
+  public static final int dance = 0;
 
   /* Motor IDs */
-  public static final int leftFront = 3;
   public static final int leftBack = 4;
-  public static final int rightFront = 1;
+  public static final int leftFront = 3;
   public static final int rightBack = 2;
+  public static final int rightFront = 1;
 }

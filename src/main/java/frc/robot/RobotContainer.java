@@ -10,9 +10,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Autos;
-import frc.robot.commands.drives.StickDrive;
+import frc.robot.commands.Drive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -30,11 +34,12 @@ public class RobotContainer {
     configureBindings();
 
     /* Subsystem Default Command */
-    Constants.driveTrain.setDefaultCommand(new StickDrive(()->MathUtil.applyDeadband(-driverController.getRawAxis(Constants.speedInput), 0.2), ()->MathUtil.applyDeadband(driverController.getRawAxis(Constants.rotationInput), 0.2)));
+    Constants.driveTrain.setDefaultCommand(new Drive(()->MathUtil.applyDeadband(-driverController.getRawAxis(Constants.speedInput), 0.2), ()->MathUtil.applyDeadband(driverController.getRawAxis(Constants.rotationInput), 0.2)));
 
     /* Autonomous Selection */
     autonomous.setDefaultOption("Default Auto", Commands.none());
     autonomous.addOption("Simple Auto", Autos.SimpleAuto());
+    autonomous.addOption("Controlled Spin", Autos.ControlledSpin());
     SmartDashboard.putData("Autonomous", autonomous);
   }
 
@@ -47,7 +52,16 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureBindings() {}
+  private void configureBindings() {
+    final JoystickButton danceButton = new JoystickButton(driverController, Constants.dance);
+
+    danceButton.whileTrue(new SequentialCommandGroup(
+      new WaitCommand(0.5),
+      new Drive(0.0, 0.3).withTimeout(2),
+      new WaitCommand(0.5),
+      new Drive(0.0, -0.3).withTimeout(2)
+    ));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -55,7 +69,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
     return autonomous.getSelected();
   }
 }

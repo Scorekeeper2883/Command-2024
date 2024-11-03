@@ -16,7 +16,7 @@ public class StickDrive extends Command {
   private DoubleSupplier speed, rotation;
 
   /**
-   * Creates a new StickDrive. 
+   * Creates a new StickDrive.
    * @param pSpeed    - See DriveTrain.Drive() pSpeed.
    * @param pRotation - See DriveTrain.Drive() pRotation.
    */
@@ -24,7 +24,7 @@ public class StickDrive extends Command {
     speed = pSpeed;
     rotation = pRotation;
 
-    addRequirements(Constants.driveTrain);    
+    addRequirements(Constants.driveTrain);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
