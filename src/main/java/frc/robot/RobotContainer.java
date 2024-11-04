@@ -25,7 +25,6 @@ import frc.robot.commands.Drive;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  /* RobotContainer Variables */
   private static final XboxController driverController = new XboxController(Constants.driverID);
   private static SendableChooser<Command> autonomous = new SendableChooser<>();
 
@@ -56,9 +55,9 @@ public class RobotContainer {
     final JoystickButton danceButton = new JoystickButton(driverController, Constants.dance);
 
     danceButton.whileTrue(new SequentialCommandGroup(
-      new WaitCommand(0.5),
+      new WaitCommand(0.1),
       new Drive(0.0, 0.3).withTimeout(2),
-      new WaitCommand(0.5),
+      new WaitCommand(0.1),
       new Drive(0.0, -0.3).withTimeout(2)
     ));
   }
