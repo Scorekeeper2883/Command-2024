@@ -4,10 +4,9 @@
 
 package frc.robot.commands;
 
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 /**
  *  Drive runs the chassis through
@@ -15,6 +14,7 @@ import frc.robot.Constants;
  */
 public class Drive extends Command {
   private double speed, rotation;
+  private boolean isStick = false;
 
   /**
    * Creates a new Drive for
@@ -23,6 +23,7 @@ public class Drive extends Command {
   public Drive(double pSpeed, double pRotation) {
     speed = pSpeed;
     rotation = pRotation;
+    isStick = false;
 
     addRequirements(Constants.driveTrain);
   }
@@ -31,9 +32,8 @@ public class Drive extends Command {
    * Creates a new Drive for driving
    * with the stick.
    */
-  public Drive(DoubleSupplier pSpeed, DoubleSupplier pRotation) {
-    speed = pSpeed.getAsDouble();
-    rotation = pRotation.getAsDouble();
+  public Drive() {
+    isStick = true;
 
     addRequirements(Constants.driveTrain);
   }
@@ -45,7 +45,13 @@ public class Drive extends Command {
    */
   @Override
   public void execute() {
-    Constants.driveTrain.Drive(speed, rotation);
+    if(isStick) {
+      Constants.driveTrain.Drive(
+        RobotContainer.driverController.getRawAxis(Constants.speedInput),
+        RobotContainer.driverController.getRawAxis(Constants.rotationInput));
+    } else {
+      Constants.driveTrain.Drive(speed, rotation);
+    }
   }
 
   /**
