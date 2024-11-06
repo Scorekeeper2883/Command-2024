@@ -46,11 +46,11 @@ public class Drive extends Command {
   @Override
   public void execute() {
     if(isStick) {
-      Constants.driveTrain.Drive(
+      Constants.driveTrain.DriveControl(
         RobotContainer.driverController.getRawAxis(Constants.speedInput),
         RobotContainer.driverController.getRawAxis(Constants.rotationInput));
     } else {
-      Constants.driveTrain.Drive(speed, rotation);
+      Constants.driveTrain.DriveControl(speed, rotation);
     }
   }
 
@@ -60,6 +60,7 @@ public class Drive extends Command {
    */
   @Override
   public void end(boolean interrupted) {
-    Constants.driveTrain.Drive(0.0, 0.0);
+    isStick = false;
+    Constants.driveTrain.DriveControl(0.0, 0.0);
   }
 }

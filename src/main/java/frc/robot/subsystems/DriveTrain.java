@@ -33,7 +33,7 @@ public class DriveTrain extends SubsystemBase {
    * @param pSpeed    - foward/backwards
    * @param pRotation - left/right (steering)
    */
-  public void Drive(double pSpeed, double pRotation) {
+  public void DriveControl(double pSpeed, double pRotation) {
     leftFrontMotor.set(pSpeed+pRotation);
     rightFrontMotor.set(pSpeed-pRotation);
   }
