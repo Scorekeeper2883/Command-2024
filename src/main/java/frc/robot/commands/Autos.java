@@ -26,7 +26,7 @@ public class Autos {
     return
       new SequentialCommandGroup(
         new WaitCommand(2.0),
-        new AutoDrive(0.35, 0.0).withTimeout(3.0)
+        new Drive(0.35, 0.0).withTimeout(3.0)
       );
   }
 
@@ -41,13 +41,13 @@ public class Autos {
   public static Command ControlledSpin() {
     return
       new SequentialCommandGroup(
-        new AutoDrive(0.0, 0.5).withTimeout(3.5),
+        new Drive(0.0, 0.5).withTimeout(3.5),
         new WaitCommand(0.1),
-        new AutoDrive(0.0, -0.5).withTimeout(3.5),
+        new Drive(0.0, -0.5).withTimeout(3.5),
         new WaitCommand(0.1),
-        new AutoDrive(0.0, 0.5).withTimeout(3.5),
+        new Drive(0.0, 0.5).withTimeout(3.5),
         new WaitCommand(0.1),
-        new AutoDrive(0.0, -0.5).withTimeout(3.5)
+        new Drive(0.0, -0.5).withTimeout(3.5)
       );
   }
 }

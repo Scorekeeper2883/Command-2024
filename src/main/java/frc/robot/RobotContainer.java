@@ -14,9 +14,8 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.AutoDrive;
 import frc.robot.commands.Autos;
-import frc.robot.commands.StickDrive;
+import frc.robot.commands.Drive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -34,7 +33,7 @@ public class RobotContainer {
     configureBindings();
 
     /* Subsystem Default Command */
-    Constants.driveTrain.setDefaultCommand(new StickDrive());
+    Constants.driveTrain.setDefaultCommand(new Drive());
 
     /* Autonomous Selection */
     autonomous.setDefaultOption("Default Auto", Commands.none());
@@ -57,9 +56,9 @@ public class RobotContainer {
 
     danceButton.whileTrue(new SequentialCommandGroup(
       new WaitCommand(0.1),
-      new AutoDrive(0.0, 0.3).withTimeout(2),
+      new Drive(0.0, 0.3).withTimeout(2),
       new WaitCommand(0.1),
-      new AutoDrive(0.0, -0.3).withTimeout(2)
+      new Drive(0.0, -0.3).withTimeout(2)
     ));
   }
 
